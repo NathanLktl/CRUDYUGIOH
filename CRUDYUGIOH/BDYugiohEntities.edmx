@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDYugiohEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cartas">
+          <Key>
+            <PropertyRef Name="IdCartas" />
+          </Key>
+          <Property Name="IdCartas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Elemento" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ataque" Type="int" Nullable="false" />
+          <Property Name="Defesa" Type="int" Nullable="false" />
+          <Property Name="tipoCarta" Type="int" Nullable="false" />
+          <Property Name="elementoCarta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Elemento">
+          <Key>
+            <PropertyRef Name="IdElemento" />
+          </Key>
+          <Property Name="IdElemento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeElemento" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tipo">
+          <Key>
+            <PropertyRef Name="IdTipo" />
+          </Key>
+          <Property Name="IdTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeTipo" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_elementoCarta">
+          <End Role="Elemento" Type="Self.Elemento" Multiplicity="1" />
+          <End Role="Cartas" Type="Self.Cartas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elemento">
+              <PropertyRef Name="IdElemento" />
+            </Principal>
+            <Dependent Role="Cartas">
+              <PropertyRef Name="elementoCarta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tipoCarta">
+          <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
+          <End Role="Cartas" Type="Self.Cartas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo">
+              <PropertyRef Name="IdTipo" />
+            </Principal>
+            <Dependent Role="Cartas">
+              <PropertyRef Name="tipoCarta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDYugiohEntitiesModelStoreContainer">
+          <EntitySet Name="Cartas" EntityType="Self.Cartas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Elemento" EntityType="Self.Elemento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tipo" EntityType="Self.Tipo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_elementoCarta" Association="Self.fk_elementoCarta">
+            <End Role="Elemento" EntitySet="Elemento" />
+            <End Role="Cartas" EntitySet="Cartas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipoCarta" Association="Self.fk_tipoCarta">
+            <End Role="Tipo" EntitySet="Tipo" />
+            <End Role="Cartas" EntitySet="Cartas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDYugiohEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Carta">
+          <Key>
+            <PropertyRef Name="IdCartas" />
+          </Key>
+          <Property Name="IdCartas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Elemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ataque" Type="Int32" Nullable="false" />
+          <Property Name="Defesa" Type="Int32" Nullable="false" />
+          <Property Name="tipoCarta" Type="Int32" Nullable="false" />
+          <Property Name="elementoCarta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Elemento1" Relationship="Self.fk_elementoCarta" FromRole="Cartas" ToRole="Elemento" />
+          <NavigationProperty Name="Tipo1" Relationship="Self.fk_tipoCarta" FromRole="Cartas" ToRole="Tipo" />
+        </EntityType>
+        <EntityType Name="Elemento">
+          <Key>
+            <PropertyRef Name="IdElemento" />
+          </Key>
+          <Property Name="IdElemento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeElemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cartas" Relationship="Self.fk_elementoCarta" FromRole="Elemento" ToRole="Cartas" />
+        </EntityType>
+        <EntityType Name="Tipo">
+          <Key>
+            <PropertyRef Name="IdTipo" />
+          </Key>
+          <Property Name="IdTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeTipo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cartas" Relationship="Self.fk_tipoCarta" FromRole="Tipo" ToRole="Cartas" />
+        </EntityType>
+        <Association Name="fk_elementoCarta">
+          <End Role="Elemento" Type="Self.Elemento" Multiplicity="1" />
+          <End Role="Cartas" Type="Self.Carta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Elemento">
+              <PropertyRef Name="IdElemento" />
+            </Principal>
+            <Dependent Role="Cartas">
+              <PropertyRef Name="elementoCarta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tipoCarta">
+          <End Role="Tipo" Type="Self.Tipo" Multiplicity="1" />
+          <End Role="Cartas" Type="Self.Carta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo">
+              <PropertyRef Name="IdTipo" />
+            </Principal>
+            <Dependent Role="Cartas">
+              <PropertyRef Name="tipoCarta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDYugiohEntitiesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cartas" EntityType="Self.Carta" />
+          <EntitySet Name="Elementos" EntityType="Self.Elemento" />
+          <EntitySet Name="Tipos" EntityType="Self.Tipo" />
+          <AssociationSet Name="fk_elementoCarta" Association="Self.fk_elementoCarta">
+            <End Role="Elemento" EntitySet="Elementos" />
+            <End Role="Cartas" EntitySet="Cartas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipoCarta" Association="Self.fk_tipoCarta">
+            <End Role="Tipo" EntitySet="Tipos" />
+            <End Role="Cartas" EntitySet="Cartas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDYugiohEntitiesModelStoreContainer" CdmEntityContainer="BDYugiohEntitiesEntities">
+          <EntitySetMapping Name="Cartas">
+            <EntityTypeMapping TypeName="BDYugiohEntitiesModel.Carta">
+              <MappingFragment StoreEntitySet="Cartas">
+                <ScalarProperty Name="IdCartas" ColumnName="IdCartas" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Elemento" ColumnName="Elemento" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Ataque" ColumnName="Ataque" />
+                <ScalarProperty Name="Defesa" ColumnName="Defesa" />
+                <ScalarProperty Name="tipoCarta" ColumnName="tipoCarta" />
+                <ScalarProperty Name="elementoCarta" ColumnName="elementoCarta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Elementos">
+            <EntityTypeMapping TypeName="BDYugiohEntitiesModel.Elemento">
+              <MappingFragment StoreEntitySet="Elemento">
+                <ScalarProperty Name="IdElemento" ColumnName="IdElemento" />
+                <ScalarProperty Name="NomeElemento" ColumnName="NomeElemento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tipos">
+            <EntityTypeMapping TypeName="BDYugiohEntitiesModel.Tipo">
+              <MappingFragment StoreEntitySet="Tipo">
+                <ScalarProperty Name="IdTipo" ColumnName="IdTipo" />
+                <ScalarProperty Name="NomeTipo" ColumnName="NomeTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
