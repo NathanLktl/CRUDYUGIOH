@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteYugioh.master.cs" Inherits="CRUDYUGIOH.SiteYugioh" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SiteYugioh.master.cs" Inherits="CRUDYUGIOH.SiteYugioh" %>
 
 <!DOCTYPE html>
 
