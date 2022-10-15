@@ -101,6 +101,9 @@
       <DependentUpon>BDYugiohEntities.edmx</DependentUpon>
       <LastGenOutput>BDYugiohEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="Cartas.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Elementos.aspx" />
     <Content Include="html5up-strongly-typed\assets\css\fontawesome-all.min.css" />
     <Content Include="html5up-strongly-typed\assets\css\images\bracket.svg" />
     <Content Include="html5up-strongly-typed\assets\css\main.css" />
@@ -157,8 +160,29 @@
       <DependentUpon>BDYugiohEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="CartaPOCO.cs" />
+    <Compile Include="Cartas.aspx.cs">
+      <DependentUpon>Cartas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cartas.aspx.designer.cs">
+      <DependentUpon>Cartas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Elemento.cs">
       <DependentUpon>BDYugiohEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Elementos.aspx.cs">
+      <DependentUpon>Elementos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Elementos.aspx.designer.cs">
+      <DependentUpon>Elementos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteYugioh.Master.cs">
